@@ -10,6 +10,7 @@ import { CoreImaskService } from './utilities/core.imask';
 import { CoreFormService } from './utilities/core.form';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { UserGroupService } from '../../shared/services/user-group/user-group.service';
+import { QuizService } from '../../shared/services/quiz/quiz.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,7 @@ export class CoreService {
     return {
       auth: this.injector.get(AuthService),
       user_group: this.injector.get(UserGroupService),
+      quiz: this.injector.get(QuizService),
     };
   }
 }

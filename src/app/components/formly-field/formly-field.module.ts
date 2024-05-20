@@ -9,6 +9,7 @@ import { ComponentsModule } from '../components.module';
 import { FormlyFieldInputComponent } from './formly-field-input/formly-field-input.component';
 import { FormlyFieldSelectComponent } from './formly-field-select/formly-field-select.component';
 import { HammerModule } from '@angular/platform-browser';
+import { FormlyQuizComponent } from './formly-quiz/formly-quiz.component';
 function requiredValidationMessage(error: any, field: FormlyFieldConfig | any) {
   return `${
     !isEmpty(field.templateOptions.label)
@@ -33,6 +34,7 @@ function patternValidationMessage(error: any, field: FormlyFieldConfig | any) {
 const formlyComponents = [
   FormlyFieldInputComponent,
   FormlyFieldSelectComponent,
+  FormlyQuizComponent,
 ];
 
 @NgModule({
@@ -101,6 +103,10 @@ const formlyComponents = [
         {
           name: 'selectField',
           component: FormlyFieldSelectComponent,
+        },
+        {
+          name: 'quizField',
+          component: FormlyQuizComponent,
         },
       ],
     }),
