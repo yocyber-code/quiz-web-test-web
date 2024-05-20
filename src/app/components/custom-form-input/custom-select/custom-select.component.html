@@ -1,0 +1,57 @@
+<div #selectContainer class="flex flex-col justify-start w-100">
+  <label #selectLabel *ngIf="label.length > 0 && !sideLabel" class="text-base font-semibold text-gray-700" [for]="componentID"
+    >{{ label }}<span *ngIf="!hideRequired && required" class="ml-1 text-red-600">*</span></label
+  >
+  <div class="relative w-full cursor-pointer">
+    <div (click)="toggleOptions()">
+      <svg
+        class="absolute w-4 h-4 text-gray-400 transform -translate-y-1/2 right-3 top-1/2"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 14 8"
+      >
+        <path
+          *ngIf="!toggleOn"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
+        />
+        <path
+          *ngIf="toggleOn"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"
+        />
+      </svg>
+      <input
+        #selectInput
+        (keyup)="searchOptions($event)"
+        [readonly]="!searchable"
+        class="block min-w-[4rem] w-full py-1.5 text-gray-700 cursor-pointer rounded-md"
+        type="text"
+        [id]="componentID"
+        [placeholder]="placeholder"
+        [required]="required"
+        [(ngModel)]="selected_name"
+      />
+    </div>
+    <ul
+      *ngIf="toggleOn"
+      class="absolute z-10 w-[calc(100%+2px)] left-[-1px] bg-white border-2 rounded-md shadow-lg max-h-96 overflow-y-scroll"
+      [@fadeInOut]
+    >
+      <li
+        *ngFor="let option of itemOptions"
+        class="block px-4 py-2 text-gray-700 cursor-pointer hover:text-gray-100 hover:bg-main-pallet-1"
+        (click)="selectOption(option)"
+      >
+        {{ option.name }}
+      </li>
+    </ul>
+  </div>
+</div>

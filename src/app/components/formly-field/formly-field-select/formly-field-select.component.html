@@ -1,0 +1,26 @@
+<div class="flex flex-row justify-start w-100">
+  <p *ngIf="sideLabel" #selectLabel class="block text-lg font-bold leading-6 text-gray-600 min-w-36 w-36">{{
+    props['label'] ?? ' '
+  }}</p>
+  <div [class]="sideInputClass" class="w-full">
+    <app-custom-select
+      [(model)]="value"
+      [required]="required"
+      [options]="itemOptions"
+      [placeholder]="placeholder"
+      [containerClass]="containerClass"
+      [labelClass]="labelClass"
+      [inputClass]="inputClass"
+      [label]="label"
+      [optionsAsync]="optionsAsync"
+      [hideRequired]="hideRequired"
+      [sideLabel]="sideLabel"
+      [searchable]="searchable"
+      (modelChange)="onChangeOption()"
+    ></app-custom-select>
+  </div>
+</div>
+<formly-validation-message
+  [ngClass]="{ block: showError, hidden: !showError }"
+  [field]="field"
+></formly-validation-message>

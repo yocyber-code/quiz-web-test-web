@@ -1,0 +1,33 @@
+<div #selectContainer class="flex flex-col justify-start">
+  <label #selectLabel [for]="elementID" class=""
+    >{{ props['label'] ?? ' ' }}<span *ngIf="!hideRequired && required" class="ml-1 text-red-600">*</span></label
+  >
+  <div class="relative">
+    <div
+      *ngIf="props['icon']"
+      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+      [innerHTML]=" sanitizer.sanitize(_SecurityContext.HTML, icon)"
+    ></div>
+    <input
+      #selectInput
+      [id]="elementID"
+      [formControl]="formControl"
+      [formlyAttributes]="field"
+      (input)="onChange()"
+      [imask]="imask"
+      [pattern]="pattern"
+      [type]="type"
+      [maxLength]="maxLength"
+      [minLength]="minLength"
+      [placeholder]="placeholder"
+      [attr.disabled]="disabled"
+      [required]="required"
+      [ngClass]="{ 'indent-6': props['icon'], 'indent-0': !props['icon'] }"
+      [autocomplete]="props['type'] === 'password' ? 'new-password' : 'off'"
+    />
+  </div>
+  <formly-validation-message
+    [ngClass]="{ block: showError, hidden: !showError }"
+    [field]="field"
+  ></formly-validation-message>
+</div>
