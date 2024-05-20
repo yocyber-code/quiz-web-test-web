@@ -1,11 +1,11 @@
-<div #selectContainer class="flex flex-col justify-start w-100">
-  <label #selectLabel *ngIf="label.length > 0 && !sideLabel" class="text-base font-semibold text-gray-700" [for]="componentID"
-    >{{ label }}<span *ngIf="!hideRequired && required" class="ml-1 text-red-600">*</span></label
+<div #selectContainer class="flex flex-col justify-start w-full max-w-[46rem]">
+  <label #selectLabel *ngIf="!sideLabel" class="text-base text-gray-700" [for]="componentID"
+    >{{ label ?? ' ' }}<span *ngIf="!hideRequired && required" class="ml-1 text-red-600">*</span></label
   >
   <div class="relative w-full cursor-pointer">
     <div (click)="toggleOptions()">
       <svg
-        class="absolute w-4 h-4 text-gray-400 transform -translate-y-1/2 right-3 top-1/2"
+        class="absolute w-6 h-6 text-gray-400 transform -translate-y-1/2 right-4 sm:right-8 top-1/2"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -42,12 +42,12 @@
     </div>
     <ul
       *ngIf="toggleOn"
-      class="absolute z-10 w-[calc(100%+2px)] left-[-1px] bg-white border-2 rounded-md shadow-lg max-h-96 overflow-y-scroll"
+      class="absolute z-10 w-[calc(100%+2px)] left-[-1px] bg-white border-2 rounded-md shadow-lg max-h-96 overflow-y-scroll p-0"
       [@fadeInOut]
     >
       <li
         *ngFor="let option of itemOptions"
-        class="block px-4 py-2 text-gray-700 cursor-pointer hover:text-gray-100 hover:bg-main-pallet-1"
+        class="block py-2 pl-2 text-gray-800 cursor-pointer hover:bg-main-pallet-1 hover:text-white"
         (click)="selectOption(option)"
       >
         {{ option.name }}

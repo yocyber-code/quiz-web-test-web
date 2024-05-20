@@ -18,11 +18,8 @@ export class CoreHttpService {
   constructor(private http: HttpClient, private coreService: CoreService) {}
 
   async setHeader() {
-    const token = this.coreService.utilities.storage.getToken();
-    const tokenType = this.coreService.utilities.storage.getTokenType();
     let headers = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
-    if (token) headers = headers.append('Authorization', `${tokenType} ${token}`);
     return headers;
   }
 

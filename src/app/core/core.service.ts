@@ -7,7 +7,9 @@ import { CoreHttpService } from './utilities/core.http';
 import { CoreEnvironmentService } from './utilities/core.environment';
 import { CoreTailwindService } from './utilities/core.tailwind';
 import { CoreImaskService } from './utilities/core.imask';
-import { CoreAddressService } from './utilities/core.address';
+import { CoreFormService } from './utilities/core.form';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { UserGroupService } from '../../shared/services/user-group/user-group.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,13 +27,14 @@ export class CoreService {
       environment: this.injector.get(CoreEnvironmentService),
       tailwind: this.injector.get(CoreTailwindService),
       imask: this.injector.get(CoreImaskService),
-      address: this.injector.get(CoreAddressService),
+      form: this.injector.get(CoreFormService),
     };
   }
 
   public get api() {
     return {
-
+      auth: this.injector.get(AuthService),
+      user_group: this.injector.get(UserGroupService),
     };
   }
 }

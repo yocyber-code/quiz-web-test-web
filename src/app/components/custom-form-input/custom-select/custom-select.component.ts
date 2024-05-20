@@ -93,6 +93,7 @@ export class CustomSelectComponent implements OnInit, AfterViewInit {
   }
 
   toggleOptions() {
+    this.removeSearch();
     if (this.itemOptions.length === 0) {
       this.toggleOn = false;
       return;
@@ -101,6 +102,7 @@ export class CustomSelectComponent implements OnInit, AfterViewInit {
   }
 
   selectOption(option: SelectorOption | null) {
+    this.removeSearch();
     this.model = option ? option.id : null;
     this.selected_name = option ? option.name : null;
     this.modelChange.emit(this.model);
@@ -109,7 +111,20 @@ export class CustomSelectComponent implements OnInit, AfterViewInit {
 
   searchOptions(event: any) {
     const value = event.target.value;
-    
+
+    if (this.bufferTempOption.length > 0) {
+      this.itemOptions = this.bufferTempOption.filter((option) =>
+        option.name.toLowerCase().includes(value.toLowerCase()),
+      );
+    } else {
+      var tempList: any = this.options;
+      this.itemOptions = tempList.filter((option: any) => option.name.toLowerCase().includes(value.toLowerCase()));
+    }
+  }
+
+  removeSearch() {
+    const value = '';
+
     if (this.bufferTempOption.length > 0) {
       this.itemOptions = this.bufferTempOption.filter((option) =>
         option.name.toLowerCase().includes(value.toLowerCase()),
@@ -125,14 +140,14 @@ export class CustomSelectComponent implements OnInit, AfterViewInit {
     const defaultLabelClass = this.selectLabel?.nativeElement.className.split(' ');
     const defaultInputClass = this.selectInput?.nativeElement.className.split(' ');
     const mergeContainerClass = this.coreService.utilities.tailwind
-    .tailwindMerge(this.selectContainer?.nativeElement.className, this.containerClass)
-    .split(' ');
+      .tailwindMerge(this.selectContainer?.nativeElement.className, this.containerClass)
+      .split(' ');
     const mergeLabelClass = this.coreService.utilities.tailwind
-    .tailwindMerge(this.selectLabel?.nativeElement.className, this.labelClass)
-    .split(' ');
+      .tailwindMerge(this.selectLabel?.nativeElement.className, this.labelClass)
+      .split(' ');
     const mergeInputClass = this.coreService.utilities.tailwind
-    .tailwindMerge(this.selectInput?.nativeElement.className, this.inputClass)
-    .split(' ');
+      .tailwindMerge(this.selectInput?.nativeElement.className, this.inputClass)
+      .split(' ');
 
     this.coreService.utilities.tailwind.removeClass(this.selectContainer?.nativeElement, defaultContainerClass);
     this.coreService.utilities.tailwind.addClass(this.selectContainer?.nativeElement, mergeContainerClass);

@@ -8,7 +8,7 @@ export class AuthGuardService {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const url: string = state.url;
-    const token = await this.coreService.utilities.storage.getToken();
+    const identity = await this.coreService.utilities.storage.getIdentity();
 
     return true;
   }

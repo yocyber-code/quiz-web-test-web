@@ -5,11 +5,15 @@
 @import 'ngx-toastr/toastr';
 
 body {
-  background: #fafafaff;
+  background: rgb(240, 240, 240);
 }
 
 html {
   scrollbar-width: thin;
+}
+
+.toast-container{
+  margin-top: 40px;
 }
 
 formly-validation-message {

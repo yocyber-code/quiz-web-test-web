@@ -84,7 +84,7 @@ export class ManageHttpInterceptor implements HttpInterceptor {
       error?.error?.code == 401
     ) {
       this.coreService.utilities.toast.error(error.error.messagealt ?? error.error.message ?? '');
-      const token = this.coreService.utilities.storage.getToken();
+      const token = this.coreService.utilities.storage.getIdentity();
       if (token) {
         this.coreService.utilities.storage.clear();
         window.location.reload();

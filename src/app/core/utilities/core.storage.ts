@@ -52,14 +52,14 @@ export class CoreStorageService {
     return encrypted.toString();
   }
 
-  setToken(data: any) {
-    this.setItem('token', data);
+  setIdentity(data: any) {
+    this.setItem('identity', data);
   }
-  getToken() {
-    return this.getItem('token');
+  getIdentity() {
+    return this.getItem('identity');
   }
-  resetToken() {
-    this.removeItem('token');
+  resetIdentity() {
+    this.removeItem('identity');
   }
 
   setUser(data: any) {

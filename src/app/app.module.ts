@@ -10,9 +10,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuardService } from '../auth-guard.service';
 import { ManageHttpInterceptor } from '../managehttp.interceptor';
+import { PageLayoutsComponent } from './page/page-layouts.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageLayoutsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,6 +23,7 @@ import { ManageHttpInterceptor } from '../managehttp.interceptor';
     ComponentsModule,
     FormlyModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',

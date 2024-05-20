@@ -10,11 +10,11 @@ import { FormlyFieldInputComponent } from './formly-field-input/formly-field-inp
 import { FormlyFieldSelectComponent } from './formly-field-select/formly-field-select.component';
 import { HammerModule } from '@angular/platform-browser';
 function requiredValidationMessage(error: any, field: FormlyFieldConfig | any) {
-  return `โปรดระบุ${
+  return `${
     !isEmpty(field.templateOptions.label)
       ? field.templateOptions.label
       : field.templateOptions.placeholder.split('*')[0].trim()
-  }`;
+  } is required`;
 }
 function minLengthValidationMessage(error: any, field: FormlyFieldConfig | any) {
   return `โปรดระบุข้อมูลไม่น้อยกว่า ${field.templateOptions.minLength} ตัวอักษร`;
